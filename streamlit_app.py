@@ -18,6 +18,7 @@ from detector import DEFAULT_CONF, DEFAULT_MODEL, MODELS, ROOT, detect, get_mode
 
 DEMO = sorted((ROOT / "demo_images").glob("*.jpg"))
 SAMPLES = sorted((ROOT / "sample_images").glob("*.jpg"))
+CHAT_HEIGHT = 480  # px; the chat scrolls inside this box once it has messages
 
 st.set_page_config(page_title="Plant disease detection", page_icon="🌿", layout="wide")
 
@@ -37,8 +38,28 @@ def run_detection(image_bytes, model_key, conf):
     return detect(image, model_key, conf)
 
 
+# Readable names for the example photos, keyed by the original file name (before "_jpg")
+DEMO_NAMES = {
+    "1355-50commonrust": "Corn · Common rust",
+    "185161-004-EAF28842": "Apple · Cedar apple rust",
+    "2015-09-17-01": "Tomato · Healthy",
+    "5579e3247db73-image": "Tomato · Septoria leaf spot",
+    "apple-leaf-14319997": "Apple · Healthy",
+    "autumn--blueberry-leaves": "Blueberry · Healthy",
+    "black_rot-grape_leaf-jpeg": "Grape · Black rot",
+    "curcurbit-powdery-mildew-erysiphe-cichoracearum-showing-development-BMMRPG":
+        "Squash · Powdery mildew",
+    "fresh-green-raspberry-leaf-isolated-on-white-background-with-clipping-KH37NJ":
+        "Raspberry · Healthy",
+    "image005": "Apple · Scab",
+    "P4190299aS": "Bell pepper · Healthy",
+    "Wild_Grape_Leaf": "Grape · Healthy",
+}
+
+
 def demo_label(path):
-    return Path(path).name.split("_jpg")[0].replace("-", " ")[:40]
+    stem = Path(path).name.split("_jpg")[0]
+    return DEMO_NAMES.get(stem, stem.replace("-", " ")[:40])
 
 
 def get_setting(name, default=None):
@@ -74,18 +95,25 @@ def care_advice(image_bytes, detections):
         st.session_state.advice = []
     history = st.session_state.advice
 
-    # Messages go in a container above the input, so new ones appear above it too
-    chat = st.container()
-    question = st.chat_input("e.g. How do I treat this? How often should I water it?",
-                             submit_mode="disable")
+    # Once a conversation starts, messages scroll inside a fixed-height box so the
+    # long answers don't stretch the right column far past the left one.
+    # The chat input's value is in session state before the widget is drawn.
+    started = bool(history) or bool(st.session_state.get("advice_question"))
+    with st.container(border=True):
+        chat = st.container(height=CHAT_HEIGHT if started else "content", border=False)
+        question = st.chat_input("e.g. How do I treat this? How often should I water it?",
+                                 key="advice_question", submit_mode="disable")
+    if started:
+        st.caption("AI-generated answers. Check with a local plant expert before treating.")
     with chat:
+        if not history:
+            with st.chat_message("assistant"):
+                st.markdown("Hi! I can see your photo and the detection result. "
+                            "Ask me how to treat it, prevent it, or care for the plant.")
         for msg in history:
             with st.chat_message(msg["role"]):
                 st.markdown(msg["content"])
         if not question:
-            if not history:
-                st.caption("Ask the AI anything about this plant. It sees the photo "
-                           "and the detection result.")
             return
         history.append({"role": "user", "content": question})
         with st.chat_message("user"):
@@ -100,7 +128,6 @@ def care_advice(image_bytes, detections):
                 st.error(f"AI request failed: {e.message or e}", icon=":material/error:")
                 return
         history.append({"role": "assistant", "content": reply})
-        st.caption("AI-generated answer. Check with a local plant expert before treating.")
 
 
 st.title("🌿 Plant disease detection")
@@ -131,7 +158,8 @@ with left:
             if shot:
                 image_bytes = shot.getvalue()
         else:
-            choice = st.selectbox("Example image", DEMO, format_func=demo_label)
+            choice = st.selectbox("Example image", sorted(DEMO, key=demo_label),
+                                  format_func=demo_label)
             image_bytes = Path(choice).read_bytes()
 
         if image_bytes:
