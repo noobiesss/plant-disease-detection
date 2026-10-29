@@ -19,8 +19,7 @@ from detector import DEFAULT_CONF, DEFAULT_MODEL, MODELS, ROOT, detect, get_mode
 DEMO = sorted((ROOT / "demo_images").glob("*.jpg"))
 SAMPLES = sorted((ROOT / "sample_images").glob("*.jpg"))
 
-st.set_page_config(page_title="Plant disease detection", page_icon=":material/eco:",
-                   layout="wide")
+st.set_page_config(page_title="Plant disease detection", page_icon="🌿", layout="wide")
 
 
 @st.cache_resource
@@ -52,9 +51,6 @@ def get_setting(name, default=None):
     return os.environ.get(name, default)
 
 
-AVATARS = {"user": ":material/person:", "assistant": ":material/potted_plant:"}
-
-
 @st.cache_resource
 def llm_client(api_key):
     return make_client(api_key)
@@ -62,11 +58,11 @@ def llm_client(api_key):
 
 def care_advice(image_bytes, detections):
     """Chat box where the user asks the AI about the current photo and findings."""
-    st.subheader("Ask about this plant", icon=":material/forum:")
+    st.subheader("Ask about this plant", divider="green")
     api_key = get_setting("GROQ_API_KEY")
     if not api_key:
-        st.caption(":material/key: Add `GROQ_API_KEY` to `.streamlit/secrets.toml` (or the "
-                   "app's Secrets on Streamlit Cloud) to chat with the AI about this plant.")
+        st.info("Add `GROQ_API_KEY` to `.streamlit/secrets.toml` (or the app's Secrets on "
+                "Streamlit Cloud) to get AI care advice.", icon=":material/key:")
         return
     client = llm_client(api_key)
     model = get_setting("GROQ_MODEL", DEFAULT_GROQ_MODEL)
@@ -84,18 +80,18 @@ def care_advice(image_bytes, detections):
                              submit_mode="disable")
     with chat:
         for msg in history:
-            with st.chat_message(msg["role"], avatar=AVATARS[msg["role"]]):
+            with st.chat_message(msg["role"]):
                 st.markdown(msg["content"])
         if not question:
             if not history:
-                st.caption("The AI sees your photo and the diagnosis. Ask about treatment, "
-                           "watering, light, or whether it can spread.")
+                st.caption("Ask the AI anything about this plant. It sees the photo "
+                           "and the detection result.")
             return
         history.append({"role": "user", "content": question})
-        with st.chat_message("user", avatar=AVATARS["user"]):
+        with st.chat_message("user"):
             st.markdown(question)
 
-        with st.chat_message("assistant", avatar=AVATARS["assistant"]):
+        with st.chat_message("assistant"):
             try:
                 reply = st.write_stream(stream_advice(client, model, image_bytes,
                                                       detections, history))
@@ -107,104 +103,96 @@ def care_advice(image_bytes, detections):
         st.caption("AI-generated answer. Check with a local plant expert before treating.")
 
 
-with st.sidebar:
-    st.subheader("Settings", icon=":material/tune:")
-    model_key = st.segmented_control(
-        "Detection model", list(MODELS), default=DEFAULT_MODEL, required=True,
-        format_func=lambda k: k.split()[0],
-        help="YOLOv8s is more accurate; YOLOv8n is faster.")
-    conf = st.slider("Confidence threshold", 0.05, 0.95, DEFAULT_CONF, 0.05,
-                     help="Hide detections the model is less sure about than this.")
-    st.space("medium")
-    st.subheader("About", icon=":material/info:")
-    st.markdown(":green-badge[YOLOv8] :green-badge[28 classes] "
-                ":green-badge[13 species] :gray-badge[CPU]")
-    st.caption("Prototype for INT4203. Results are model predictions, "
-               "not an expert diagnosis.")
-
-st.title("Plant disease detection", icon=":material/eco:")
-st.caption("Photograph a leaf. The model finds it, names the disease, "
-           "and you can ask the AI how to care for the plant.")
-st.space("small")
+st.title("🌿 Plant disease detection")
+st.caption("Upload or take a leaf photo. The model finds each leaf, names the disease "
+           "and shows how confident it is.")
+with st.container(horizontal=True):
+    st.badge("YOLOv8", icon=":material/memory:", color="green")
+    st.badge("28 classes", icon=":material/category:", color="green")
+    st.badge("13 plant species", icon=":material/eco:", color="green")
+    st.badge("Runs on CPU", icon=":material/speed:", color="gray")
 
 left, right = st.columns([5, 6], gap="large")
 
 with left:
-    st.subheader("Your photo", icon=":material/add_a_photo:")
     with st.container(border=True):
         source = st.segmented_control(
             "Image source",
-            [":material/upload: Upload", ":material/photo_camera: Camera",
-             ":material/image: Example"],
-            default=":material/upload: Upload", required=True,
-            label_visibility="collapsed")
+            [":material/upload: Upload", ":material/photo_camera: Camera", ":material/image: Example"],
+            default=":material/upload: Upload", required=True)
 
         image_bytes = None
         if source.endswith("Upload"):
-            file = st.file_uploader("Leaf photo", type=["jpg", "jpeg", "png"],
-                                    label_visibility="collapsed")
+            file = st.file_uploader("Leaf photo", type=["jpg", "jpeg", "png"])
             if file:
                 image_bytes = file.getvalue()
         elif source.endswith("Camera"):
-            shot = st.camera_input("Take a photo of a leaf", label_visibility="collapsed")
+            shot = st.camera_input("Take a photo of a leaf")
             if shot:
                 image_bytes = shot.getvalue()
         else:
-            choice = st.selectbox("Example image", DEMO, format_func=demo_label,
-                                  label_visibility="collapsed")
+            choice = st.selectbox("Example image", DEMO, format_func=demo_label)
             image_bytes = Path(choice).read_bytes()
 
-        detections = []
         if image_bytes:
-            with st.spinner("Examining the leaf..."):
-                annotated, detections, infer_ms = run_detection(image_bytes, model_key, conf)
-            if st.toggle("Show original photo"):
-                st.image(image_bytes, alt="Your leaf photo")
-            else:
-                st.image(annotated, alt="Leaf photo with detected leaves outlined and labelled")
-            st.caption(f"{model_key.split()[0]} · threshold {conf:.2f} · "
-                       f"{infer_ms:.0f} ms")
+            st.image(image_bytes, caption="Input image", alt="Uploaded leaf photo")
+
+    with st.expander("Settings", icon=":material/tune:"):
+        model_key = st.segmented_control("Model", list(MODELS), default=DEFAULT_MODEL,
+                                         required=True)
+        conf = st.slider("Confidence threshold", 0.05, 0.95, DEFAULT_CONF, 0.05)
 
 with right:
-    st.subheader("Diagnosis", icon=":material/stethoscope:")
     if not image_bytes:
-        with st.container(border=True):
-            st.markdown("**How it works**")
-            st.markdown("1. Upload a leaf photo, take one, or pick an example.\n"
-                        "2. The model outlines each leaf and names what it sees.\n"
-                        "3. Ask the AI how to treat or care for the plant.")
-            st.caption("Works best with one leaf, filling most of the frame, in daylight.")
-    elif not detections:
-        st.warning("Try a clearer, closer photo of a single leaf, or lower the "
-                   "confidence threshold in the sidebar.", title="No leaf detected",
-                   icon=":material/search_off:")
+        st.info("Upload a photo, take one with the camera, or pick an example "
+                "to see the diagnosis here.", icon=":material/arrow_back:")
     else:
-        diseased = [d for d in detections if not d.healthy]
-        top = diseased[0] if diseased else detections[0]
-        with st.container(border=True):
+        with st.spinner("Detecting..."):
+            annotated, detections, infer_ms = run_detection(image_bytes, model_key, conf)
+
+        st.image(annotated, caption="Detection result",
+                 alt="Leaf photo with detected leaves outlined and labelled")
+
+        if not detections:
+            st.warning("Try a clearer, closer photo of a single leaf, or lower the "
+                       "confidence threshold in Settings.", title="No leaf detected")
+        else:
+            diseased = [d for d in detections if not d.healthy]
             if diseased:
-                st.badge("Disease detected", icon=":material/coronavirus:", color="red")
+                st.error(f"Top finding: **{diseased[0].label}** "
+                         f"({diseased[0].confidence:.0%} confidence)",
+                         title="Disease detected", icon=":material/warning:")
             else:
-                st.badge("Healthy", icon=":material/check_circle:", color="green")
-            st.header(top.label, anchor=False)
-            with st.container(horizontal=True):
-                st.metric("Confidence", f"{top.confidence:.0%}")
-                st.metric("Leaves found", len(detections))
-                st.metric("Diseased", len(diseased))
+                st.success(f"**{detections[0].label}** "
+                           f"({detections[0].confidence:.0%} confidence)",
+                           title="Healthy leaf", icon=":material/check_circle:")
 
-        with st.expander(f"All detections ({len(detections)})", icon=":material/table:"):
-            st.dataframe(
-                pd.DataFrame([{
-                    "Class": d.label,
-                    "Status": "Healthy" if d.healthy else "Diseased",
-                    "Confidence": d.confidence,
-                    "Box [x1, y1, x2, y2]": str(list(d.box)),
-                } for d in detections]),
-                hide_index=True,
-                column_config={"Confidence": st.column_config.ProgressColumn(
-                    min_value=0.0, max_value=1.0, format="percent")},
-                alt="Table of all detections with class, status, confidence and box")
+            with st.container(border=True):
+                for d in detections[:5]:
+                    status = "Healthy" if d.healthy else "Diseased"
+                    st.progress(d.confidence,
+                                text=f"{d.label} · {status} · {d.confidence:.0%}")
+                if len(detections) > 5:
+                    st.caption(f"+ {len(detections) - 5} more in the table below")
 
-        st.space("small")
-        with st.container(border=True):
+            with st.expander("All detections (class, confidence, box)",
+                             icon=":material/table:"):
+                st.dataframe(
+                    pd.DataFrame([{
+                        "Class": d.label,
+                        "Status": "Healthy" if d.healthy else "Diseased",
+                        "Confidence": d.confidence,
+                        "Box [x1, y1, x2, y2]": str(list(d.box)),
+                    } for d in detections]),
+                    hide_index=True,
+                    column_config={"Confidence": st.column_config.ProgressColumn(
+                        min_value=0.0, max_value=1.0, format="percent")},
+                    alt="Table of all detections with class, status, confidence and box")
+
+        st.caption(f"{model_key} · threshold {conf:.2f} · {len(detections)} object(s) · "
+                   f"inference {infer_ms:.0f} ms")
+
+        if detections:
             care_advice(image_bytes, detections)
+
+st.caption("Prototype for INT4203 · Results are model predictions, not an expert diagnosis.")

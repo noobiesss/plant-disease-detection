@@ -1,46 +1,6 @@
-# Botanical "field journal" look: warm paper background, forest green, terracotta for disease.
-# Light and dark both defined, so the appearance toggle in Settings still works.
 [theme]
-font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
-headingFont = "Fraunces:https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap"
-headingFontWeights = [600, 600, 600, 500, 500, 500]
-baseRadius = "0.75rem"
-buttonRadius = "full"
-showWidgetBorder = true
-showSidebarBorder = true
-linkUnderline = false
-paddingTop = "2rem"
-metricValueFontSize = "1.75rem"
-
-[theme.light]
-primaryColor = "#2E6B47"
-backgroundColor = "#F7F5EF"
-secondaryBackgroundColor = "#EDE9DD"
-textColor = "#1E2A21"
-borderColor = "#DDD7C8"
-greenColor = "#2E6B47"
-redColor = "#B5462F"
-orangeColor = "#B7791F"
-dataframeHeaderBackgroundColor = "#EDE9DD"
-
-[theme.dark]
-primaryColor = "#3D8A5A"
-backgroundColor = "#101712"
-secondaryBackgroundColor = "#18221B"
-textColor = "#E6EDE6"
-borderColor = "#2A372D"
-greenColor = "#6FBF8A"
-redColor = "#E07A5F"
-orangeColor = "#E0A84F"
-dataframeHeaderBackgroundColor = "#18221B"
-
-[theme.light.sidebar]
-backgroundColor = "#EFEBE0"
-secondaryBackgroundColor = "#F7F5EF"
-
-[theme.dark.sidebar]
-backgroundColor = "#0B110D"
-secondaryBackgroundColor = "#18221B"
+primaryColor = "#059669"
+baseRadius = "large"
 
 [server]
 maxUploadSize = 20
