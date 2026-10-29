@@ -1,0 +1,10 @@
+M4 PROTOTYPE — INITIAL INFERENCE SETTINGS
+
+Candidate model: YOLOv8s (yolov8s_best.pt)
+Alternative model: YOLOv8n (yolov8n_best.pt)
+Image size: 640
+Initial confidence threshold: 0.25
+
+The confidence threshold is a starting point for prototype testing.
+Document any threshold changes and test the final UI separately.
+The prototype's end-to-end speed may differ from the saved benchmark.

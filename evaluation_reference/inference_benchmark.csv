@@ -1,0 +1,3 @@
+Model,Images,Image_Size,Batch_Size,Total_Time_Seconds,Average_Time_ms_per_Image,Throughput_FPS,GPU
+YOLOv8n,90,640,1,2.0548,22.832,43.799,Tesla T4
+YOLOv8s,90,640,1,2.264,25.155,39.753,Tesla T4

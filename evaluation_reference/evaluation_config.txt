@@ -1,0 +1,41 @@
+PROJECT: Plant Disease Detection using YOLO
+
+TEST DATASET
+Location: Google Drive / INT4203_M3/test
+Images: 90
+Annotated object instances: 259
+Number of classes: 28
+
+EVALUATION SETTINGS
+Image size: 640
+Batch size: 16
+Confidence threshold: 0.001
+IoU threshold: 0.7
+Device: NVIDIA Tesla T4 GPU
+Ultralytics version: 8.4.174
+PyTorch version: 2.11.0+cu130
+
+MODELS
+Baseline: YOLOv8n
+Larger model: YOLOv8s
+
+TEST METRICS
+YOLOv8n:
+Precision: 0.5179
+Recall: 0.4980
+mAP@50: 0.4915
+mAP@50-95: 0.3354
+Reported inference time: 8.8 ms/image
+Parameters: 3,011,108
+
+YOLOv8s:
+Precision: 0.4879
+Recall: 0.4899
+mAP@50: 0.5305
+mAP@50-95: 0.3548
+Reported inference time: 10.2 ms/image
+Parameters: 11,136,420
+
+Note:
+Inference time is the value reported by Ultralytics during
+the batch evaluation. It is not a separate batch-size-1 benchmark.

@@ -1,0 +1,28 @@
+0: Apple leaf
+1: Apple rust leaf
+2: grape leaf
+3: grape leaf black rot
+4: Peach leaf
+5: Potato leaf early blight
+6: Potato leaf late blight
+7: Raspberry leaf
+8: Soyabean leaf
+9: Squash Powdery mildew leaf
+10: Strawberry leaf
+11: Tomato Early blight leaf
+12: Apple Scab Leaf
+13: Tomato leaf
+14: Tomato leaf bacterial spot
+15: Tomato leaf late blight
+16: Tomato leaf mosaic virus
+17: Tomato leaf yellow virus
+18: Tomato mold leaf
+19: Tomato Septoria leaf spot
+20: Tomato two spotted spider mites leaf
+21: Bell_pepper leaf
+22: Bell_pepper leaf spot
+23: Blueberry leaf
+24: Cherry leaf
+25: Corn Gray leaf spot
+26: Corn leaf blight
+27: Corn rust leaf

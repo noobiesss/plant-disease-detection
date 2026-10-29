@@ -1,0 +1,11 @@
+model,image,num_detections,top_class,top_confidence,all_detections,inference_ms,end_to_end_ms,expected_class,correct
+YOLOv8s,0008003-strawberry-leaf-veiner-large_jpg.rf.f1c13f30b3d6f8cddeddacfc3364fd64.jpg,8,Strawberry leaf,0.693,"Strawberry leaf 0.69 [937, 504, 1241, 861]; Strawberry leaf 0.65 [1162, 776, 1255, 1007]; Soyabean leaf 0.63 [180, 362, 633, 930]; Strawberry leaf 0.42 [724, 383, 1066, 669]; Raspberry leaf 0.33 [727, 385, 1063, 668]; Raspberry leaf 0.31 [731, 21, 1083, 249]; Raspberry leaf 0.29 [710, 644, 1027, 964]; Strawberry leaf 0.28 [730, 20, 1084, 248]",207.5,244.8,,
+YOLOv8s,00pe_jpg.rf.9feea8dbf39bbd5a89d3d44b24a48954.jpg,1,Cherry leaf,0.804,"Cherry leaf 0.80 [1, 0, 689, 739]",144.6,156.4,,
+YOLOv8s,0605_Rust-induced_leafspot_jpg.rf.5f4362714b6392c6b2b467b7974c66d4.jpg,1,Apple rust leaf,0.852,"Apple rust leaf 0.85 [1, 3, 313, 185]",120.8,123.7,,
+YOLOv8s,072_jpg.rf.f302bbef89e577150a467751d9b040e4.jpg,4,Tomato leaf mosaic virus,0.471,"Tomato leaf mosaic virus 0.47 [202, 0, 263, 68]; Tomato leaf 0.40 [291, 91, 396, 156]; Tomato leaf 0.38 [320, 0, 404, 83]; Tomato mold leaf 0.30 [179, 203, 286, 307]",214.5,222.0,,
+YOLOv8s,0_jpg.rf.9450122b217ad9a352efe6200a823c76.jpg,1,Tomato leaf,0.296,"Tomato leaf 0.30 [23, 28, 109, 150]",144.4,147.1,,
+YOLOv8n,0008003-strawberry-leaf-veiner-large_jpg.rf.f1c13f30b3d6f8cddeddacfc3364fd64.jpg,5,Strawberry leaf,0.803,"Strawberry leaf 0.80 [893, 173, 1189, 530]; Strawberry leaf 0.77 [722, 374, 1067, 663]; Strawberry leaf 0.68 [947, 511, 1238, 859]; Strawberry leaf 0.57 [737, 23, 1079, 246]; Strawberry leaf 0.52 [1163, 773, 1257, 1003]",71.0,102.1,,
+YOLOv8n,00pe_jpg.rf.9feea8dbf39bbd5a89d3d44b24a48954.jpg,2,Cherry leaf,0.754,"Cherry leaf 0.75 [32, 29, 707, 763]; Cherry leaf 0.36 [5, 683, 335, 826]",99.8,113.0,,
+YOLOv8n,0605_Rust-induced_leafspot_jpg.rf.5f4362714b6392c6b2b467b7974c66d4.jpg,1,Apple rust leaf,0.826,"Apple rust leaf 0.83 [1, 1, 324, 174]",80.3,83.4,,
+YOLOv8n,072_jpg.rf.f302bbef89e577150a467751d9b040e4.jpg,1,Tomato leaf,0.258,"Tomato leaf 0.26 [188, 80, 272, 124]",85.1,89.1,,
+YOLOv8n,0_jpg.rf.9450122b217ad9a352efe6200a823c76.jpg,5,Bell_pepper leaf,0.559,"Bell_pepper leaf 0.56 [0, 156, 105, 216]; Tomato leaf 0.48 [105, 187, 183, 299]; Tomato leaf 0.35 [25, 28, 108, 143]; Bell_pepper leaf 0.29 [127, 65, 210, 153]; Soyabean leaf 0.28 [24, 30, 109, 144]",72.5,76.2,,

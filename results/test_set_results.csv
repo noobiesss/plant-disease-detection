@@ -1,0 +1,91 @@
+image,ground_truth_main_class,yolov8s_top,yolov8s_conf,yolov8s_correct,yolov8n_top,yolov8n_conf,yolov8n_correct
+0008003-strawberry-leaf-veiner-large_jpg.rf.f1c13f30b3d6f8cddeddacfc3364fd64.jpg,Strawberry leaf,Strawberry leaf,0.693,True,Strawberry leaf,0.803,True
+00pe_jpg.rf.9feea8dbf39bbd5a89d3d44b24a48954.jpg,Peach leaf,Cherry leaf,0.804,False,Cherry leaf,0.754,False
+0605_Rust-induced_leafspot_jpg.rf.5f4362714b6392c6b2b467b7974c66d4.jpg,Apple rust leaf,Apple rust leaf,0.852,True,Apple rust leaf,0.826,True
+072_jpg.rf.f302bbef89e577150a467751d9b040e4.jpg,Tomato leaf yellow virus,Tomato leaf mosaic virus,0.471,False,Tomato leaf,0.258,False
+0_jpg.rf.9450122b217ad9a352efe6200a823c76.jpg,Bell_pepper leaf spot,Tomato leaf,0.296,False,Bell_pepper leaf,0.559,False
+1355-50commonrust_jpg.rf.e8bf2ea8fc98e6e29035f5970c1677cc.jpg,Corn rust leaf,Corn rust leaf,0.955,True,Corn rust leaf,0.885,True
+1422_0-jpeg_jpg.rf.956ec6e6e22cd05d82d990f1ad2b9370.jpg,Tomato leaf mosaic virus,Tomato mold leaf,0.826,False,Tomato leaf mosaic virus,0.396,True
+16488048256_f64cfea40e_z_jpg.rf.a4c4f62fd16e0c4b4281ca44448cc458.jpg,Squash Powdery mildew leaf,Squash Powdery mildew leaf,0.781,True,Squash Powdery mildew leaf,0.916,True
+1686_jpg.rf.8a14b062581efb0336cc408a31ff502c.jpg,Tomato leaf,Tomato leaf yellow virus,0.505,False,Tomato leaf,0.618,True
+185161-004-EAF28842_jpg.rf.7a4e4306d87f80b1e24f6457cba813ee.jpg,Apple rust leaf,Apple rust leaf,0.934,True,Apple rust leaf,0.909,True
+20090710-lateblight_jpg.rf.53d7e3971b60d0cff1912cefe927475d.jpg,Potato leaf late blight,Tomato mold leaf,0.488,False,Tomato leaf late blight,0.529,False
+2015-09-17-01_jpg.rf.c0bbc5f1daa91f1d60041d03fb8940fe.jpg,Tomato leaf,Tomato leaf,0.857,True,Tomato leaf,0.865,True
+20170524_195105-1k1eu8b_jpg.rf.1cb88d8d87a094eeb9d1373640ccef6e.jpg,Apple rust leaf,Apple rust leaf,0.843,True,Apple rust leaf,0.835,True
+2198823523_4b8fdb3f03_b_d_jpg.rf.f36fd2f241d7e5b1c8c8f224814c9f91.jpg,Blueberry leaf,Blueberry leaf,0.819,True,Blueberry leaf,0.797,True
+286_1600_jpg.rf.9804e827dc253dcad47ed58c36605761.jpg,Potato leaf late blight,Potato leaf early blight,0.883,False,Potato leaf early blight,0.928,False
+35327886795_6f608e0eaa_b_jpg.rf.23f2f0c0c7ebc0bb24d234a2e90e34ec.jpg,grape leaf black rot,Apple Scab Leaf,0.454,False,grape leaf,0.3,False
+36ca1410e232eec4a8003fe411246820_jpg.rf.a63d27345da35be32b61baa78885345d.jpg,Tomato leaf yellow virus,Tomato leaf yellow virus,0.842,True,Tomato leaf yellow virus,0.659,True
+3782849713_398f3a1086_b_jpg.rf.46424c79f6826e87a16f479f50f1b6fd.jpg,Potato leaf late blight,Bell_pepper leaf spot,0.69,False,Tomato leaf,0.539,False
+3785483636_d888419c98_o_jpg.rf.6a113a4a290c3c4b8e3ee1a901d5cdee.jpg,Potato leaf early blight,Tomato leaf late blight,0.717,False,Tomato leaf late blight,0.567,False
+39765006175_e2f0da764d_b_jpg.rf.f6ca4f302baf6e829186132dc88b7d72.jpg,Tomato leaf bacterial spot,Tomato leaf bacterial spot,0.867,True,Tomato leaf bacterial spot,0.601,True
+5579e3247db73-image_jpg.rf.e187259f671ddd690b0c23b728f3fbbe.jpg,Tomato Septoria leaf spot,Tomato Septoria leaf spot,0.886,True,Tomato Septoria leaf spot,0.897,True
+A-A-Blueberry-Leaf-Disease-003_jpg.rf.809ba4ade85bee363ea374f346bc7578.jpg,Blueberry leaf,Blueberry leaf,0.85,True,Blueberry leaf,0.865,True
+Aug-16-2010-049_jpg.rf.8991d5576e0692c28ebf7dbcc21c59de.jpg,Squash Powdery mildew leaf,Squash Powdery mildew leaf,0.765,True,Squash Powdery mildew leaf,0.798,True
+Blog-3_jpg.rf.601b398694f60e2956038cf9244a5ff4.jpg,Potato leaf late blight,Soyabean leaf,0.837,False,Potato leaf late blight,0.689,True
+Blueberry07_jpg.rf.9ebefbf55ca1e92f63a49048a187093d.jpg,Blueberry leaf,Blueberry leaf,0.842,True,Tomato leaf,0.704,False
+Concord-Grapes_jpg.rf.cada343046f4319e224e2ce051d1f5c0.jpg,grape leaf black rot,grape leaf black rot,0.931,True,grape leaf black rot,0.811,True
+CornRust1_jpg.rf.dacfe866b118fea377ba61730710aeb7.jpg,Corn rust leaf,Corn rust leaf,0.833,True,Corn rust leaf,0.865,True
+DSC00005-JPG_jpg.rf.3f07d78f0d50fc2e35a03857af0cbd1f.jpg,Apple Scab Leaf,Apple Scab Leaf,0.891,True,Apple rust leaf,0.657,False
+DSC02006-JPG_jpg.rf.32eb5e900bf622171cd84bf09dd3fc2a.jpg,Tomato leaf yellow virus,Tomato leaf yellow virus,0.816,True,Tomato leaf yellow virus,0.687,True
+HighTunnel_TLM6_jpg.rf.7e508a3d1bee3d795caa07438c07920b.jpg,Tomato mold leaf,Tomato mold leaf,0.843,True,Tomato mold leaf,0.733,True
+IMG_1246_jpg.rf.1dfc7a6c9dd194fc77ce1ba228b1b847.jpg,Tomato leaf,Bell_pepper leaf,0.54,False,Bell_pepper leaf,0.321,False
+IMG_1629-JPG_1507122477_jpg.rf.b7a1a79d6b92452404c49ac8f99dad93.jpg,Bell_pepper leaf,Bell_pepper leaf spot,0.721,False,Bell_pepper leaf,0.707,True
+IMG_2348_jpg.rf.62e3a84c7b5a6dd96dca72a5d16a93a6.jpg,Tomato leaf bacterial spot,Tomato Septoria leaf spot,0.81,False,Tomato Septoria leaf spot,0.776,False
+IMG_3175_jpg.rf.66455e33df9bd3d0d2ca2604a3098c79.jpg,Tomato Septoria leaf spot,Tomato leaf bacterial spot,0.8,False,Tomato leaf bacterial spot,0.788,False
+IMG_4056-JPG_jpg.rf.074c7f9701500e01f3f65027a8eaf6ca.jpg,Strawberry leaf,Strawberry leaf,0.919,True,Raspberry leaf,0.58,False
+IMG_42231_jpg.rf.9eb2714982d8c9c89fb59891b3c194b1.jpg,Corn leaf blight,Corn leaf blight,0.823,True,Corn leaf blight,0.808,True
+IMG_4280-JPG_jpg.rf.bb989411c1d28f75bb0cd2e3977557ca.jpg,Cherry leaf,Cherry leaf,0.852,True,Cherry leaf,0.786,True
+Kelley-20Gray-20leaf-20spot_jpg.rf.422ebcfba449c18db1765ed92fafaff3.jpg,Corn Gray leaf spot,Corn Gray leaf spot,0.817,True,Corn Gray leaf spot,0.731,True
+Late-20blight-20tomato1_jpg.rf.ccbed865257e0037c709ea77679850b9.jpg,Tomato leaf late blight,Tomato leaf late blight,0.873,True,Tomato leaf late blight,0.761,True
+Late-blight-on-potato_jpg.rf.c54cfbb4202dcefa35f37881ed215b99.jpg,Potato leaf late blight,Potato leaf early blight,0.916,False,Potato leaf early blight,0.762,False
+LateBlightFig3new_jpg.rf.ec9772b8f725dd373d65f6aa72fb8f9a.jpg,Potato leaf late blight,Potato leaf late blight,0.559,True,Potato leaf late blight,0.429,True
+Late_blight_on_potato_leaf_jpg.rf.260ee62b21bea30e6b4b7cc694a5e6a5.jpg,Potato leaf late blight,Apple leaf,0.419,False,Potato leaf late blight,0.714,True
+Leaf-2Bsymptoms-2BMDA_jpg.rf.378d504f2b70dead67f996820888f9e9.jpg,Tomato leaf bacterial spot,Tomato leaf late blight,0.404,False,Tomato leaf bacterial spot,0.646,True
+Leaf-mold3_jpg.rf.bd2326ba62a4f5690b2a382d8a92a839.jpg,Tomato mold leaf,Tomato leaf yellow virus,0.755,False,Tomato leaf,0.596,False
+Northern-corn-leaf-blight-NM-F2_jpg.rf.c5d4c9e3ae768c961c1db256c0f829f1.jpg,Corn leaf blight,Corn leaf blight,0.486,True,Corn leaf blight,0.459,True
+Northern-corn-leaf-blight-V12-leaf-NM-F3_jpg.rf.a4894ba517b5315d09bebd29e9754d92.jpg,Corn leaf blight,Corn leaf blight,0.565,True,Corn leaf blight,0.812,True
+OLU13_jpg.rf.bcb8e1aa7624733e062ddbc776c9e27d.jpg,Tomato mold leaf,Tomato leaf,0.79,False,Tomato leaf,0.621,False
+P4190299aS_jpg.rf.e86ad059610ddcc0677ac63cd4f67b89.jpg,Bell_pepper leaf,Bell_pepper leaf,0.838,True,Bell_pepper leaf,0.882,True
+Potato_Early_Blight_-26_Late_Blight_jpg.rf.252f0f29bd82f1df60f4d9701a8f4050.jpg,Potato leaf early blight,Blueberry leaf,0.66,False,Blueberry leaf,0.641,False
+Powdery-mildew-on-pumpkin-leaf-for-web_jpg.rf.afa87076c362429a93988b664acdd479.jpg,Squash Powdery mildew leaf,grape leaf,0.835,False,Squash Powdery mildew leaf,0.879,True
+SCR_jpg.rf.0257fc1898f0851febcbeeaeb3b408a5.jpg,Corn rust leaf,Corn rust leaf,0.868,True,Corn rust leaf,0.816,True
+Septoria_Leaf_Spot_jpg.rf.7e9d3af9181815af5ca280280920b987.jpg,Tomato Septoria leaf spot,Tomato Septoria leaf spot,0.828,True,Apple Scab Leaf,0.602,False
+Septoria_Leaf_Spot_of_Tomato187_jpg.rf.75aff5d750845b68c721761a6329fea8.jpg,Tomato Septoria leaf spot,Potato leaf early blight,0.5,False,Tomato leaf bacterial spot,0.324,False
+Southern-Corn-Rust-ashx_w-770_jpg.rf.f7ab7e9b68105ed608ce1961c4b91798.jpg,Corn rust leaf,Corn rust leaf,0.787,True,Corn rust leaf,0.809,True
+Wild_Grape_Leaf_jpg.rf.701dbe7105239c11be213aac6d5b5219.jpg,grape leaf,grape leaf,0.882,True,grape leaf,0.926,True
+apple-leaf-14319997_jpg.rf.45498c0e10b80f77851a34b764c42579.jpg,Apple leaf,Apple leaf,0.919,True,Apple leaf,0.915,True
+apple-tree-branch-green-leaves-fresh-isolated-white-background-33032924_jpg.rf.17284cefba06489a3b5860daa0f33232.jpg,Apple leaf,Apple leaf,0.824,True,Apple leaf,0.904,True
+appleleaf-trial-007-JPG_jpg.rf.e5ff395d231b89b4b939df254a84c711.jpg,Apple leaf,Cherry leaf,0.756,False,Cherry leaf,0.914,False
+applescab2_jpg.rf.6a893becdc2e9f367e75d402011bf069.jpg,Apple Scab Leaf,Apple leaf,0.642,False,Apple Scab Leaf,0.483,True
+autumn--blueberry-leaves_jpg.rf.5e8525f7b77e0eb8c21912a1f6a7a7be.jpg,Blueberry leaf,Blueberry leaf,0.885,True,Blueberry leaf,0.885,True
+bac_spot1-300x298_jpg.rf.762b87dade8c0239cb39f90ec2976754.jpg,Tomato leaf bacterial spot,Tomato leaf bacterial spot,0.608,True,Tomato leaf late blight,0.325,False
+black_rot-grape_leaf-jpeg_jpg.rf.d6a224a0d359ab08e6e9b888e05c8f2f.jpg,grape leaf black rot,grape leaf black rot,0.802,True,grape leaf black rot,0.954,True
+blog_early_blight_628_jpg.rf.d15bbb20a109b7a53aa92222d71c0bcf.jpg,Tomato Early blight leaf,Tomato Septoria leaf spot,0.799,False,Tomato Septoria leaf spot,0.871,False
+blueberry-leaf-isolated-white-background-clipping-path-87355538_jpg.rf.c4e674cf906098d4c8fead5aba875543.jpg,Blueberry leaf,Blueberry leaf,0.649,True,Blueberry leaf,0.532,True
+blueberryleaves_jpg.rf.455b633eabb6900ea0f8787d721ca46f.jpg,Blueberry leaf,Blueberry leaf,0.874,True,Blueberry leaf,0.868,True
+commonrust-2016-a-shirley_jpg.rf.c2c35b04ee445d71fcb5222e5289a697.jpg,Corn rust leaf,Corn rust leaf,0.565,True,Corn rust leaf,0.786,True
+corn-southern-rust-spores_jpg.rf.28e180ddf19f7d0b057210a4651f38f4.jpg,Corn rust leaf,Corn rust leaf,0.735,True,Corn rust leaf,0.299,True
+creeping-cinquefoil-potentilla-reptans-4_jpg.rf.96e88f1fa89ab5804ee61263b7712508.jpg,Strawberry leaf,Raspberry leaf,0.813,False,Raspberry leaf,0.893,False
+curcurbit-powdery-mildew-erysiphe-cichoracearum-showing-development-BMMRPG_jpg.rf.3f2a69a9bcd55ca3a335dde4d09d1c5b.jpg,Squash Powdery mildew leaf,Squash Powdery mildew leaf,0.909,True,Squash Powdery mildew leaf,0.906,True
+depositphotos_56066889-stock-photo-apple-with-leaf_jpg.rf.ec2744168dc5ba7e77efaf1b74ab527e.jpg,Apple leaf,Apple leaf,0.824,True,Apple leaf,0.918,True
+depositphotos_6657863-stock-photo-single-red-apple-with-leaf_jpg.rf.6ff0b40251a795418cd51ce67ff6bed6.jpg,Apple leaf,Apple leaf,0.765,True,Apple leaf,0.899,True
+dsc5270_jpg.rf.1956e4fc45997a86ffc401e8bd152f9f.jpg,Corn leaf blight,Peach leaf,0.685,False,Peach leaf,0.563,False
+dsc_8151s_jpg.rf.b76aaec96fb4930f47804a6b15dfeb0a.jpg,Potato leaf late blight,Tomato leaf late blight,0.878,False,Tomato leaf late blight,0.793,False
+e8199bb0e4a7edf94351ca07a5aadc06_jpg.rf.3821e5c1040b9a51e4a6c9397b524a4f.jpg,Bell_pepper leaf,Cherry leaf,0.838,False,Bell_pepper leaf,0.804,True
+early-20blight-20-284-29-jpg_itok-gfK5C193_jpg.rf.867d06648fc99909a467a5bba555f30a.jpg,Tomato Early blight leaf,Tomato leaf late blight,0.753,False,Tomato leaf late blight,0.808,False
+early-blight-closeup-NCSU_jpg.rf.c87da56445c453614870aa18d1f0fc97.jpg,Potato leaf early blight,Tomato Early blight leaf,0.792,False,Tomato Early blight leaf,0.446,False
+early-blight-cmyk-opt-jpeg_jpg.rf.22a9545004c0846003bbf3e104f5315c.jpg,Potato leaf early blight,Potato leaf early blight,0.668,True,Potato leaf early blight,0.524,True
+ed12ff77ce021883de241830dee55e2e53d2c93231699_1260x1260_jpg.rf.41ceb1cc50e225986e24c1b7739d0c2b.jpg,Cherry leaf,Cherry leaf,0.874,True,Cherry leaf,0.794,True
+file-php_id-18598-t-1_jpg.rf.7f2c8d0cfb9b21e4120cee30dff24385.jpg,Bell_pepper leaf,Tomato mold leaf,0.402,False,,0.0,False
+fpls-08-01602-g001_jpg.rf.b3492f6d76184a0981a0f20d038f87e0.jpg,Tomato leaf,Raspberry leaf,0.28,False,Tomato leaf,0.493,True
+fresh-green-raspberry-leaf-isolated-on-white-background-with-clipping-KH37NJ_jpg.rf.0acca8ab65fcfd5066a10302cd4bb83c.jpg,Raspberry leaf,Raspberry leaf,0.859,True,Raspberry leaf,0.89,True
+grape-leaf-15796930_jpg.rf.f2119b024ac3bc8ea8144a37692d9957.jpg,grape leaf,grape leaf,0.863,True,grape leaf,0.89,True
+grape-vine-leaf-1327453_jpg.rf.633e3604155f8b403b7a4dab877cafdd.jpg,grape leaf,grape leaf,0.674,True,Strawberry leaf,0.815,False
+grapeleaf4-JPG_jpg.rf.8735e6b4a158bb0c27a2afb6f50679d6.jpg,grape leaf,Strawberry leaf,0.754,False,grape leaf,0.826,True
+gray_leaf_spot__1-14B8612C8B60CDBC8E2_jpg.rf.06fd3f7a950b2d5c73a8262f6d5e98a6.jpg,Corn Gray leaf spot,Corn leaf blight,0.759,False,Corn leaf blight,0.799,False
+green-leaf-apple-tree-14300049_jpg.rf.fa78ea652b64b3be1e3292ac70818d59.jpg,Apple leaf,Raspberry leaf,0.742,False,Apple leaf,0.756,True
+imag4090_jpg.rf.8275272d919d6a4d5878e4b3e345aed0.jpg,Corn rust leaf,Corn rust leaf,0.924,True,Corn rust leaf,0.876,True
+image005_jpg.rf.4a605b16af1daa5e68909445cddac43d.jpg,Apple Scab Leaf,Apple Scab Leaf,0.767,True,Apple Scab Leaf,0.949,True
+image_1500x1500-253E-jpeg_1473988930_jpg.rf.c9736e42d546fb38fddfe8fe74e6ad28.jpg,Corn leaf blight,Corn leaf blight,0.876,True,Corn leaf blight,0.806,True
+img_0164_jpg.rf.9e3b3703daef13567761045cccf74067.jpg,Strawberry leaf,Blueberry leaf,0.72,False,Strawberry leaf,0.802,True
