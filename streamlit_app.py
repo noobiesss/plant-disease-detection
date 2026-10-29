@@ -57,8 +57,8 @@ def llm_client(api_key):
 
 
 def care_advice(image_bytes, detections):
-    """AI care advice for the current photo, with follow-up questions."""
-    st.subheader("Care advice", divider="green")
+    """Chat box where the user asks the AI about the current photo and findings."""
+    st.subheader("Ask about this plant", divider="green")
     api_key = get_setting("GROQ_API_KEY")
     if not api_key:
         st.info("Add `GROQ_API_KEY` to `.streamlit/secrets.toml` (or the app's Secrets on "
@@ -74,33 +74,33 @@ def care_advice(image_bytes, detections):
         st.session_state.advice = []
     history = st.session_state.advice
 
-    for msg in history:
-        with st.chat_message(msg["role"]):
-            st.markdown(msg["content"])
-
-    if history:
-        question = st.chat_input("Ask a follow-up, e.g. is it safe to eat the fruit?",
-                                 submit_mode="disable")
+    # Messages go in a container above the input, so new ones appear above it too
+    chat = st.container()
+    question = st.chat_input("e.g. How do I treat this? How often should I water it?",
+                             submit_mode="disable")
+    with chat:
+        for msg in history:
+            with st.chat_message(msg["role"]):
+                st.markdown(msg["content"])
         if not question:
+            if not history:
+                st.caption("Ask the AI anything about this plant. It sees the photo "
+                           "and the detection result.")
             return
         history.append({"role": "user", "content": question})
         with st.chat_message("user"):
             st.markdown(question)
-    elif not st.button("Get care advice", icon=":material/eco:", type="primary"):
-        st.caption("Qwen (on Groq) looks at the photo and explains the finding and suggests treatment and care tips.")
-        return
 
-    with st.chat_message("assistant"):
-        try:
-            reply = st.write_stream(stream_advice(client, model, image_bytes,
-                                                  detections, history))
-        except groq.APIError as e:
-            if history:
+        with st.chat_message("assistant"):
+            try:
+                reply = st.write_stream(stream_advice(client, model, image_bytes,
+                                                      detections, history))
+            except groq.APIError as e:
                 history.pop()  # let the user retry the same question
-            st.error(f"AI request failed: {e.message or e}", icon=":material/error:")
-            return
-    history.append({"role": "assistant", "content": reply})
-    st.caption("AI-generated advice. Check with a local plant expert before treating.")
+                st.error(f"AI request failed: {e.message or e}", icon=":material/error:")
+                return
+        history.append({"role": "assistant", "content": reply})
+        st.caption("AI-generated answer. Check with a local plant expert before treating.")
 
 
 st.title("🌿 Plant disease detection")

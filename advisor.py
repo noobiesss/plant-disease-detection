@@ -17,18 +17,13 @@ SYSTEM_PROMPT = """You are a friendly plant doctor helping home gardeners and sm
 You receive a leaf photo and the findings of a YOLOv8 plant disease detector.
 The detector can be wrong: if the photo clearly disagrees with it, say so politely.
 
-For the first answer, use these short sections in Markdown:
-### What it is
-One or two sentences on the disease (or confirm the leaf looks healthy).
-### What to do now
-3-5 concrete treatment steps, organic options first, chemical options only if needed.
-### Ongoing care
-3-5 tips on watering, light, soil, pruning and prevention for this plant.
-### When to get help
-When to contact a local agricultural extension office or plant expert.
+Answer the user's questions about this plant: the disease, treatment, watering, light,
+soil, pruning, prevention and so on. For treatment, give organic options first and
+chemical options only if needed. Suggest a local agricultural extension office or plant
+expert when the problem is serious.
 
-Keep it under 250 words, plain language, no jargon without a short explanation.
-For follow-up questions, answer briefly and stay on plants and gardening."""
+Keep answers short (under 200 words), in plain language with Markdown lists where they
+help, and stay on plants and gardening."""
 
 
 def summarize(detections):
@@ -47,8 +42,9 @@ def make_client(api_key):
 def stream_advice(client, model, image_bytes, detections, history):
     """Yield the model's reply text chunk by chunk.
 
-    history is the visible chat so far: [{"role": "user"|"assistant", "content": str}].
-    An empty history asks for the first care advice.
+    history is the chat so far, starting with the user's first question:
+    [{"role": "user"|"assistant", "content": str}]. The photo and detections are
+    attached to that first question.
     """
     mime = Image.MIME[Image.open(io.BytesIO(image_bytes)).format]
     image_url = f"data:{mime};base64,{base64.b64encode(image_bytes).decode()}"
@@ -56,10 +52,10 @@ def stream_advice(client, model, image_bytes, detections, history):
         {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user", "content": [
             {"type": "text", "text": summarize(detections)
-                + "\n\nPlease give care advice for this plant."},
+                + "\n\nMy question: " + history[0]["content"]},
             {"type": "image_url", "image_url": {"url": image_url}},
         ]},
-        *history,
+        *history[1:],
     ]
     stream = client.chat.completions.create(
         model=model, messages=messages, stream=True,

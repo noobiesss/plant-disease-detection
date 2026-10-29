@@ -8,7 +8,7 @@ the **disease class**, the **bounding box** and the **confidence score**.
 | File | Purpose |
 |---|---|
 | `detector.py` | Inference pipeline: loads the model, checks the class mapping, runs detection |
-| `advisor.py` | Care advice from Qwen 3.8 27B (vision) on Groq: sends the photo and detections, streams back treatment and care tips |
+| `advisor.py` | Plant Q&A chat with Qwen 3.8 27B (vision) on Groq: the user asks questions, the model sees the photo and detections |
 | `streamlit_app.py` | Streamlit web UI: upload, camera or example image, pick a model and threshold, see the results |
 | `requirements.txt`, `packages.txt`, `.streamlit/config.toml` | Python packages, system package (libGL for OpenCV) and theme for Streamlit Cloud |
 | `test_prototype.py` | Batch test: runs every image through both models and writes `results/test_log.csv` and the annotated images |
@@ -29,7 +29,7 @@ python test_prototype.py path/to/img_folder   # batch test on your own images
 **Online demo (Streamlit Cloud):** deploy this repo with main file `streamlit_app.py` and
 Python 3.12. `packages.txt` installs libGL, which OpenCV needs on the Streamlit Cloud image.
 
-**AI care advice (optional):** get a free API key at https://console.groq.com/keys and
+**AI plant Q&A (optional):** get a free API key at https://console.groq.com/keys and
 put it in `.streamlit/secrets.toml` (git-ignored), or in the app's **Settings → Secrets** on
 Streamlit Cloud:
 
@@ -38,7 +38,7 @@ GROQ_API_KEY = "your-key"
 # GROQ_MODEL = "qwen/qwen3.8-27b"   # optional; must be a Groq model that accepts images
 ```
 
-Without a key the app still works; only the "Care advice" section shows a setup hint.
+Without a key the app still works; only the "Ask about this plant" section shows a setup hint.
 
 ## Workflow
 
