@@ -4,4 +4,4 @@ torch
 torchvision
 ultralytics>=8.4
 streamlit>=1.57
-google-genai>=1.0
+groq>=1.0

@@ -10,10 +10,10 @@ from pathlib import Path
 
 import pandas as pd
 import streamlit as st
-from google.genai import errors as genai_errors
+import groq
 from PIL import Image
 
-from advisor import DEFAULT_GEMINI_MODEL, make_client, stream_advice, summarize
+from advisor import DEFAULT_GROQ_MODEL, make_client, stream_advice, summarize
 from detector import DEFAULT_CONF, DEFAULT_MODEL, MODELS, ROOT, detect, get_model
 
 DEMO = sorted((ROOT / "demo_images").glob("*.jpg"))
@@ -52,20 +52,20 @@ def get_setting(name, default=None):
 
 
 @st.cache_resource
-def gemini_client(api_key):
+def llm_client(api_key):
     return make_client(api_key)
 
 
 def care_advice(image_bytes, detections):
-    """Gemini care advice for the current photo, with follow-up questions."""
+    """AI care advice for the current photo, with follow-up questions."""
     st.subheader("Care advice", divider="green")
-    api_key = get_setting("GEMINI_API_KEY")
+    api_key = get_setting("GROQ_API_KEY")
     if not api_key:
-        st.info("Add `GEMINI_API_KEY` to `.streamlit/secrets.toml` (or the app's Secrets on "
+        st.info("Add `GROQ_API_KEY` to `.streamlit/secrets.toml` (or the app's Secrets on "
                 "Streamlit Cloud) to get AI care advice.", icon=":material/key:")
         return
-    client = gemini_client(api_key)
-    model = get_setting("GEMINI_MODEL", DEFAULT_GEMINI_MODEL)
+    client = llm_client(api_key)
+    model = get_setting("GROQ_MODEL", DEFAULT_GROQ_MODEL)
 
     # Start a fresh conversation whenever the photo or findings change
     key = hashlib.sha1(image_bytes + summarize(detections).encode()).hexdigest()
@@ -87,17 +87,17 @@ def care_advice(image_bytes, detections):
         with st.chat_message("user"):
             st.markdown(question)
     elif not st.button("Get care advice", icon=":material/eco:", type="primary"):
-        st.caption("Gemini explains the finding and suggests treatment and care tips.")
+        st.caption("Qwen (on Groq) looks at the photo and explains the finding and suggests treatment and care tips.")
         return
 
     with st.chat_message("assistant"):
         try:
             reply = st.write_stream(stream_advice(client, model, image_bytes,
                                                   detections, history))
-        except genai_errors.APIError as e:
+        except groq.APIError as e:
             if history:
                 history.pop()  # let the user retry the same question
-            st.error(f"Gemini request failed: {e.message or e}", icon=":material/error:")
+            st.error(f"AI request failed: {e.message or e}", icon=":material/error:")
             return
     history.append({"role": "assistant", "content": reply})
     st.caption("AI-generated advice. Check with a local plant expert before treating.")

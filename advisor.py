@@ -1,17 +1,17 @@
-"""Plant care advice from Google Gemini, based on the detector's findings.
+"""Plant care advice from an LLM on Groq, based on the detector's findings.
 
-Used by the web UI (streamlit_app.py). Gemini gets the leaf photo plus the
+Used by the web UI (streamlit_app.py). The vision model gets the leaf photo plus the
 detections, so it can explain the disease and suggest treatment and care.
 """
+import base64
 import io
 
-from google import genai
-from google.genai import types
+from groq import Groq
 from PIL import Image
 
-# An alias that always points at Google's current Flash model.
-# Override with GEMINI_MODEL in .streamlit/secrets.toml to pin a version.
-DEFAULT_GEMINI_MODEL = "gemini-flash-latest"
+# Qwen 3.8 27B is the vision model on Groq (preview), so it can look at the photo.
+# Override with GROQ_MODEL in .streamlit/secrets.toml to use another model.
+DEFAULT_GROQ_MODEL = "qwen/qwen3.8-27b"
 
 SYSTEM_PROMPT = """You are a friendly plant doctor helping home gardeners and small farmers.
 You receive a leaf photo and the findings of a YOLOv8 plant disease detector.
@@ -41,29 +41,29 @@ def summarize(detections):
 
 
 def make_client(api_key):
-    return genai.Client(api_key=api_key)
+    return Groq(api_key=api_key)
 
 
 def stream_advice(client, model, image_bytes, detections, history):
-    """Yield Gemini's reply text chunk by chunk.
+    """Yield the model's reply text chunk by chunk.
 
     history is the visible chat so far: [{"role": "user"|"assistant", "content": str}].
     An empty history asks for the first care advice.
     """
     mime = Image.MIME[Image.open(io.BytesIO(image_bytes)).format]
-    first_turn = types.Content(role="user", parts=[
-        types.Part.from_bytes(data=image_bytes, mime_type=mime),
-        types.Part.from_text(text=summarize(detections)
-                             + "\n\nPlease give care advice for this plant."),
-    ])
-    contents = [first_turn] + [
-        types.Content(role="model" if m["role"] == "assistant" else "user",
-                      parts=[types.Part.from_text(text=m["content"])])
-        for m in history
+    image_url = f"data:{mime};base64,{base64.b64encode(image_bytes).decode()}"
+    messages = [
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "user", "content": [
+            {"type": "text", "text": summarize(detections)
+                + "\n\nPlease give care advice for this plant."},
+            {"type": "image_url", "image_url": {"url": image_url}},
+        ]},
+        *history,
     ]
-    stream = client.models.generate_content_stream(
-        model=model, contents=contents,
-        config=types.GenerateContentConfig(system_instruction=SYSTEM_PROMPT))
+    stream = client.chat.completions.create(
+        model=model, messages=messages, stream=True,
+        reasoning_format="hidden")  # keep Qwen's thinking out of the answer
     for chunk in stream:
-        if chunk.text:
-            yield chunk.text
+        if chunk.choices and chunk.choices[0].delta.content:
+            yield chunk.choices[0].delta.content
