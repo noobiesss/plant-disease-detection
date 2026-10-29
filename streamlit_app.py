@@ -3,13 +3,17 @@
 Run locally:  streamlit run streamlit_app.py
 Also the entry point on Streamlit Cloud. Detection itself lives in detector.py.
 """
+import hashlib
 import io
+import os
 from pathlib import Path
 
 import pandas as pd
 import streamlit as st
+from google.genai import errors as genai_errors
 from PIL import Image
 
+from advisor import DEFAULT_GEMINI_MODEL, make_client, stream_advice, summarize
 from detector import DEFAULT_CONF, DEFAULT_MODEL, MODELS, ROOT, detect, get_model
 
 DEMO = sorted((ROOT / "demo_images").glob("*.jpg"))
@@ -35,6 +39,68 @@ def run_detection(image_bytes, model_key, conf):
 
 def demo_label(path):
     return Path(path).name.split("_jpg")[0].replace("-", " ")[:40]
+
+
+def get_setting(name, default=None):
+    """Read a value from .streamlit/secrets.toml (or Cloud secrets), then the environment."""
+    try:
+        if name in st.secrets:
+            return st.secrets[name]
+    except FileNotFoundError:  # no secrets file at all
+        pass
+    return os.environ.get(name, default)
+
+
+@st.cache_resource
+def gemini_client(api_key):
+    return make_client(api_key)
+
+
+def care_advice(image_bytes, detections):
+    """Gemini care advice for the current photo, with follow-up questions."""
+    st.subheader("Care advice", divider="green")
+    api_key = get_setting("GEMINI_API_KEY")
+    if not api_key:
+        st.info("Add `GEMINI_API_KEY` to `.streamlit/secrets.toml` (or the app's Secrets on "
+                "Streamlit Cloud) to get AI care advice.", icon=":material/key:")
+        return
+    client = gemini_client(api_key)
+    model = get_setting("GEMINI_MODEL", DEFAULT_GEMINI_MODEL)
+
+    # Start a fresh conversation whenever the photo or findings change
+    key = hashlib.sha1(image_bytes + summarize(detections).encode()).hexdigest()
+    if st.session_state.get("advice_key") != key:
+        st.session_state.advice_key = key
+        st.session_state.advice = []
+    history = st.session_state.advice
+
+    for msg in history:
+        with st.chat_message(msg["role"]):
+            st.markdown(msg["content"])
+
+    if history:
+        question = st.chat_input("Ask a follow-up, e.g. is it safe to eat the fruit?",
+                                 submit_mode="disable")
+        if not question:
+            return
+        history.append({"role": "user", "content": question})
+        with st.chat_message("user"):
+            st.markdown(question)
+    elif not st.button("Get care advice", icon=":material/eco:", type="primary"):
+        st.caption("Gemini explains the finding and suggests treatment and care tips.")
+        return
+
+    with st.chat_message("assistant"):
+        try:
+            reply = st.write_stream(stream_advice(client, model, image_bytes,
+                                                  detections, history))
+        except genai_errors.APIError as e:
+            if history:
+                history.pop()  # let the user retry the same question
+            st.error(f"Gemini request failed: {e.message or e}", icon=":material/error:")
+            return
+    history.append({"role": "assistant", "content": reply})
+    st.caption("AI-generated advice. Check with a local plant expert before treating.")
 
 
 st.title("🌿 Plant disease detection")
@@ -125,5 +191,8 @@ with right:
 
         st.caption(f"{model_key} · threshold {conf:.2f} · {len(detections)} object(s) · "
                    f"inference {infer_ms:.0f} ms")
+
+        if detections:
+            care_advice(image_bytes, detections)
 
 st.caption("Prototype for INT4203 · Results are model predictions, not an expert diagnosis.")

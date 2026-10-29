@@ -8,6 +8,7 @@ the **disease class**, the **bounding box** and the **confidence score**.
 | File | Purpose |
 |---|---|
 | `detector.py` | Inference pipeline: loads the model, checks the class mapping, runs detection |
+| `advisor.py` | Care advice from Google Gemini: sends the photo and detections, streams back treatment and care tips |
 | `streamlit_app.py` | Streamlit web UI: upload, camera or example image, pick a model and threshold, see the results |
 | `requirements.txt`, `packages.txt`, `.streamlit/config.toml` | Python packages, system package (libGL for OpenCV) and theme for Streamlit Cloud |
 | `test_prototype.py` | Batch test: runs every image through both models and writes `results/test_log.csv` and the annotated images |
@@ -27,6 +28,17 @@ python test_prototype.py path/to/img_folder   # batch test on your own images
 
 **Online demo (Streamlit Cloud):** deploy this repo with main file `streamlit_app.py` and
 Python 3.12. `packages.txt` installs libGL, which OpenCV needs on the Streamlit Cloud image.
+
+**AI care advice (optional):** get a free API key at https://aistudio.google.com/apikey and
+put it in `.streamlit/secrets.toml` (git-ignored), or in the app's **Settings → Secrets** on
+Streamlit Cloud:
+
+```toml
+GEMINI_API_KEY = "your-key"
+# GEMINI_MODEL = "gemini-flash-latest"   # optional, pin a specific Gemini model
+```
+
+Without a key the app still works; only the "Care advice" section shows a setup hint.
 
 ## Workflow
 
