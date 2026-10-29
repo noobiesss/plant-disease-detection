@@ -1,2 +1,7 @@
+# CPU-only PyTorch: much smaller than the default CUDA build (needed on Streamlit Cloud)
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+torchvision
 ultralytics>=8.4
+streamlit>=1.57
 gradio>=5.0

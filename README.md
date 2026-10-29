@@ -19,7 +19,8 @@ the **disease class**, the **bounding box** and the **confidence score**.
 
 ```bash
 pip install -r requirements.txt      # ultralytics + gradio (a GPU is optional)
-python app.py                         # open http://127.0.0.1:7860
+python app.py                         # Gradio UI, open http://127.0.0.1:7860
+streamlit run streamlit_app.py        # Streamlit UI (also used on Streamlit Cloud)
 python test_prototype.py              # batch test on sample_images/
 python test_prototype.py path/to/img_folder   # batch test on your own images
 ```
