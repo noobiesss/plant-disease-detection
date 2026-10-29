@@ -4,4 +4,3 @@ torch
 torchvision
 ultralytics>=8.4
 streamlit>=1.57
-gradio>=5.0

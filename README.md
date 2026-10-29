@@ -8,7 +8,8 @@ the **disease class**, the **bounding box** and the **confidence score**.
 | File | Purpose |
 |---|---|
 | `detector.py` | Inference pipeline: loads the model, checks the class mapping, runs detection |
-| `app.py` | Gradio web UI: upload, webcam or paste an image, pick a model and threshold, see the results |
+| `streamlit_app.py` | Streamlit web UI: upload, camera or example image, pick a model and threshold, see the results |
+| `requirements.txt`, `packages.txt`, `.streamlit/config.toml` | Python packages, system package (libGL for OpenCV) and theme for Streamlit Cloud |
 | `test_prototype.py` | Batch test: runs every image through both models and writes `results/test_log.csv` and the annotated images |
 | `config/class_names_corrected.txt` | Verified class names (see the class-name fix section) |
 | `demo_images/` | 12 test-set images that both models get right, for the live demo |
@@ -18,23 +19,22 @@ the **disease class**, the **bounding box** and the **confidence score**.
 ## How to run
 
 ```bash
-pip install -r requirements.txt      # ultralytics + gradio (a GPU is optional)
-python app.py                         # Gradio UI, open http://127.0.0.1:7860
-streamlit run streamlit_app.py        # Streamlit UI (also used on Streamlit Cloud)
+pip install -r requirements.txt      # CPU PyTorch, ultralytics, streamlit (no GPU needed)
+streamlit run streamlit_app.py        # web UI, open http://localhost:8501
 python test_prototype.py              # batch test on sample_images/
 python test_prototype.py path/to/img_folder   # batch test on your own images
 ```
 
-For a demo on another device, change the last line of `app.py` to `demo.launch(share=True)`.
-That gives a temporary public link.
+**Online demo (Streamlit Cloud):** deploy this repo with main file `streamlit_app.py` and
+Python 3.12. `packages.txt` installs libGL, which OpenCV needs on the Streamlit Cloud image.
 
 ## Workflow
 
-Input image (upload/webcam) → `detector.detect()` → YOLOv8 (imgsz 640, conf 0.25, IoU 0.7)
+Input image (upload/camera/example) → `detector.detect()` → YOLOv8 (imgsz 640, conf 0.25, IoU 0.7)
 → annotated image + summary (Healthy / Disease detected) + table (class, status, confidence, box) + timing
 
 - Settings come from `config/inference_settings.txt`. You can change the confidence threshold with the slider in the UI.
-- On startup the app checks that each model is the expected one (its built-in names match `class_names.txt`), then shows the names from `class_names_corrected.txt`.
+- When a model is first loaded, the app checks that each model is the expected one (its built-in names match `class_names.txt`), then shows the names from `class_names_corrected.txt`.
 - The 10 classes without a disease in their name (e.g. `Apple leaf`, `Tomato leaf`) are shown as **Healthy**.
 
 ## ⚠️ Class-name fix (important)
@@ -84,6 +84,8 @@ classify them correctly with confidence ≥ 0.77. They are shown as examples in 
 
 **Issues found and fixed**
 - The class names were wrong (see above). Fixed with `class_names_corrected.txt`.
-- Gradio passes images as RGB numpy arrays, but Ultralytics reads numpy arrays as BGR. That gave
-  wrong confidences in the UI. Fixed by passing PIL images.
-- The first prediction after loading took about 3.8 s. Fixed by warming up both models at startup.
+- The first UI (Gradio) passed images as RGB numpy arrays, but Ultralytics reads numpy arrays as BGR.
+  That gave wrong confidences. Fixed by passing PIL images (the Streamlit app does the same).
+- The first prediction after loading took several seconds. Fixed by caching each model and
+  warming it up on a sample image when it is first loaded.
+- Streamlit Cloud could not import OpenCV (`cv2`) because libGL was missing. Fixed with `packages.txt`.

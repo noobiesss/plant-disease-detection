@@ -1,7 +1,7 @@
-"""Plant Disease Detection prototype — Streamlit web UI (for Streamlit Cloud).
+"""Plant Disease Detection prototype — Streamlit web UI.
 
 Run locally:  streamlit run streamlit_app.py
-The Gradio version (app.py) uses the same detector.py pipeline.
+Also the entry point on Streamlit Cloud. Detection itself lives in detector.py.
 """
 import io
 from pathlib import Path
@@ -13,13 +13,16 @@ from PIL import Image
 from detector import DEFAULT_CONF, DEFAULT_MODEL, MODELS, ROOT, detect, get_model
 
 DEMO = sorted((ROOT / "demo_images").glob("*.jpg"))
+SAMPLES = sorted((ROOT / "sample_images").glob("*.jpg"))
 
 st.set_page_config(page_title="Plant disease detection", page_icon="🌿", layout="wide")
 
 
 @st.cache_resource
 def load_model(model_key):
-    return get_model(model_key)
+    model = get_model(model_key)
+    detect(str(SAMPLES[0]), model_key)  # warm-up, so the first real prediction is fast
+    return model
 
 
 @st.cache_data(max_entries=32, show_spinner=False)

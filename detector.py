@@ -1,6 +1,6 @@
 """Inference pipeline for the plant disease detection prototype.
 
-Shared by the Gradio UI (app.py) and the batch test script (test_prototype.py),
+Shared by the web UI (streamlit_app.py) and the batch test script (test_prototype.py),
 so both use exactly the same model loading, settings and post-processing.
 """
 import time
