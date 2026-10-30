@@ -1,0 +1,15 @@
+YOLOv8s (higher mAP): 38/90 test images misdiagnosed (42.2%)
+    wrong plant species                            23  (61% of errors)
+    same plant: confused with another disease      11  (29% of errors)
+    same plant: healthy leaf predicted diseased     2  (5% of errors)
+    same plant: diseased leaf predicted healthy     2  (5% of errors)
+YOLOv8n (faster): 31/90 test images misdiagnosed (34.4%)
+    wrong plant species                            15  (48% of errors)
+    same plant: confused with another disease      10  (32% of errors)
+    same plant: diseased leaf predicted healthy     5  (16% of errors)
+    no detection                                    1  (3% of errors)
+
+original names  YOLOv8s: mAP@50=0.5305  mAP@50-95=0.3548
+original names  YOLOv8n: mAP@50=0.4915  mAP@50-95=0.3354
+corrected names YOLOv8s: mAP@50=0.5305  mAP@50-95=0.3548
+corrected names YOLOv8n: mAP@50=0.4915  mAP@50-95=0.3354

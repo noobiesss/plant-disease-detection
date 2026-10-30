@@ -12,6 +12,7 @@ the **disease class**, the **bounding box** and the **confidence score**.
 | `streamlit_app.py` | Streamlit web UI: upload, camera or example image, pick a model and threshold, see the results |
 | `requirements.txt`, `packages.txt`, `.streamlit/config.toml` | Python packages, system package (libGL for OpenCV) and theme for Streamlit Cloud |
 | `test_prototype.py` | Batch test: runs every image through both models and writes `results/test_log.csv` and the annotated images |
+| `verify_claims.py` | Reproduces the numbers in the report: misdiagnosis rate and error breakdown on the test set, and mAP with the original vs corrected class names. Writes `results/claims_check.txt` and `results/test_errors.csv` |
 | `config/class_names_corrected.txt` | Verified class names (see the class-name fix section) |
 | `demo_images/` | 12 test-set images that both models get right, for the live demo |
 | `results/` | Test logs, annotated images and a UI screenshot |
@@ -24,6 +25,7 @@ pip install -r requirements.txt      # CPU PyTorch, ultralytics, streamlit (no G
 streamlit run streamlit_app.py        # web UI, open http://localhost:8501
 python test_prototype.py              # batch test on sample_images/
 python test_prototype.py path/to/img_folder   # batch test on your own images
+python verify_claims.py path/to/Plantdoc.v2i.yolov8   # re-check the report's numbers (needs the dataset)
 ```
 
 **Online demo (Streamlit Cloud):** deploy this repo with main file `streamlit_app.py` and
@@ -56,7 +58,8 @@ The models were trained with that yaml, so their built-in names are wrong too. E
 ID 10 is a strawberry leaf, but the yaml calls it "Peach leaf"; ID 24 is a cherry leaf, but the yaml calls it "Tomato mold leaf".
 
 We checked it two ways:
-1. Keywords in the image filenames for each label ID (e.g. 177 of the ID-10 images have "strawberry" in the name).
+1. Keywords in the original image filenames for each label ID (e.g. 70 of the 94 unique source images labelled ID 10
+   contain "strawberry"). Across all 28 IDs, the corrected names match 1,268 filenames and the original names only 249.
 2. Looking at cropped label boxes for every ID (e.g. ID 20 images carry a "Mite Damage" watermark).
 
 With the corrected names, the dataset labels of all 5 sample images match what the photos show.
@@ -65,7 +68,8 @@ With the corrected names, the dataset labels of all 5 sample images match what t
 - `config/class_names_corrected.txt`: verified mapping, **used by the prototype**
 
 The label IDs were always consistent, so the models learned correctly and **no retraining is needed**.
-The overall metrics (mAP etc.) are unchanged. Only the per-class names in M3's reports
+The overall metrics (mAP etc.) are unchanged: `verify_claims.py` evaluates the test set with both name lists and gets
+identical results (mAP@50 0.5305 for YOLOv8s, 0.4915 for YOLOv8n), because YOLO matches predictions by class ID. Only the per-class names in M3's reports
 (confusion matrix, per-class AP) need to be relabelled with the corrected list.
 
 ## Test results (corrected names)
@@ -79,6 +83,13 @@ Full test set, 90 images, CPU. This reproduces M3's metrics exactly:
 
 "Image-level correct" means the highest-confidence box (conf ≥ 0.25) has one of the image's ground-truth classes.
 Per-image results are in `results/test_set_results.csv`.
+
+**Misdiagnosed test images** (`results/claims_check.txt`, details in `results/test_errors.csv`):
+
+| Model | Misdiagnosed | Wrong plant | Same plant, other disease | Diseased predicted healthy | Healthy predicted diseased | No detection |
+|---|---|---|---|---|---|---|
+| YOLOv8n | 31/90 (34.4%) | 15 | 10 | 5 | 0 | 1 |
+| YOLOv8s | 38/90 (42.2%) | 23 | 11 | 2 | 2 | 0 |
 
 - **Strong classes:** Corn rust (7/7), Blueberry, Apple rust, Cherry, Squash powdery mildew
 - **Weak classes:** Potato late blight (1/8 for v8s), Tomato early blight, Peach, Bell_pepper leaf spot

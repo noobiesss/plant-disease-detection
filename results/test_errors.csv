@@ -1,0 +1,70 @@
+model,image,ground_truth_classes,top_prediction,confidence,error_type
+YOLOv8s (higher mAP),00pe_jpg.rf.9feea8dbf39bbd5a89d3d44b24a48954.jpg,Peach leaf,Cherry leaf,0.804,wrong plant species
+YOLOv8s (higher mAP),072_jpg.rf.f302bbef89e577150a467751d9b040e4.jpg,Tomato leaf yellow virus,Tomato leaf mosaic virus,0.471,same plant: confused with another disease
+YOLOv8s (higher mAP),0_jpg.rf.9450122b217ad9a352efe6200a823c76.jpg,Bell_pepper leaf spot,Tomato leaf,0.296,wrong plant species
+YOLOv8s (higher mAP),1422_0-jpeg_jpg.rf.956ec6e6e22cd05d82d990f1ad2b9370.jpg,Tomato leaf mosaic virus,Tomato mold leaf,0.826,same plant: confused with another disease
+YOLOv8s (higher mAP),1686_jpg.rf.8a14b062581efb0336cc408a31ff502c.jpg,Tomato leaf,Tomato leaf yellow virus,0.505,same plant: healthy leaf predicted diseased
+YOLOv8s (higher mAP),20090710-lateblight_jpg.rf.53d7e3971b60d0cff1912cefe927475d.jpg,Potato leaf late blight,Tomato mold leaf,0.488,wrong plant species
+YOLOv8s (higher mAP),286_1600_jpg.rf.9804e827dc253dcad47ed58c36605761.jpg,Potato leaf late blight,Potato leaf early blight,0.883,same plant: confused with another disease
+YOLOv8s (higher mAP),35327886795_6f608e0eaa_b_jpg.rf.23f2f0c0c7ebc0bb24d234a2e90e34ec.jpg,grape leaf black rot,Apple Scab Leaf,0.454,wrong plant species
+YOLOv8s (higher mAP),3782849713_398f3a1086_b_jpg.rf.46424c79f6826e87a16f479f50f1b6fd.jpg,Potato leaf late blight,Bell_pepper leaf spot,0.690,wrong plant species
+YOLOv8s (higher mAP),3785483636_d888419c98_o_jpg.rf.6a113a4a290c3c4b8e3ee1a901d5cdee.jpg,Potato leaf early blight,Tomato leaf late blight,0.717,wrong plant species
+YOLOv8s (higher mAP),Blog-3_jpg.rf.601b398694f60e2956038cf9244a5ff4.jpg,Potato leaf late blight,Soyabean leaf,0.837,wrong plant species
+YOLOv8s (higher mAP),IMG_1246_jpg.rf.1dfc7a6c9dd194fc77ce1ba228b1b847.jpg,Tomato leaf,Bell_pepper leaf,0.540,wrong plant species
+YOLOv8s (higher mAP),IMG_1629-JPG_1507122477_jpg.rf.b7a1a79d6b92452404c49ac8f99dad93.jpg,Bell_pepper leaf,Bell_pepper leaf spot,0.721,same plant: healthy leaf predicted diseased
+YOLOv8s (higher mAP),IMG_2348_jpg.rf.62e3a84c7b5a6dd96dca72a5d16a93a6.jpg,Tomato leaf bacterial spot,Tomato Septoria leaf spot,0.810,same plant: confused with another disease
+YOLOv8s (higher mAP),IMG_3175_jpg.rf.66455e33df9bd3d0d2ca2604a3098c79.jpg,Tomato Septoria leaf spot,Tomato leaf bacterial spot,0.800,same plant: confused with another disease
+YOLOv8s (higher mAP),Late-blight-on-potato_jpg.rf.c54cfbb4202dcefa35f37881ed215b99.jpg,Potato leaf late blight,Potato leaf early blight,0.916,same plant: confused with another disease
+YOLOv8s (higher mAP),Late_blight_on_potato_leaf_jpg.rf.260ee62b21bea30e6b4b7cc694a5e6a5.jpg,Potato leaf late blight,Apple leaf,0.419,wrong plant species
+YOLOv8s (higher mAP),Leaf-2Bsymptoms-2BMDA_jpg.rf.378d504f2b70dead67f996820888f9e9.jpg,Tomato leaf bacterial spot,Tomato leaf late blight,0.404,same plant: confused with another disease
+YOLOv8s (higher mAP),Leaf-mold3_jpg.rf.bd2326ba62a4f5690b2a382d8a92a839.jpg,Tomato mold leaf,Tomato leaf yellow virus,0.755,same plant: confused with another disease
+YOLOv8s (higher mAP),OLU13_jpg.rf.bcb8e1aa7624733e062ddbc776c9e27d.jpg,Tomato mold leaf,Tomato leaf,0.790,same plant: diseased leaf predicted healthy
+YOLOv8s (higher mAP),Potato_Early_Blight_-26_Late_Blight_jpg.rf.252f0f29bd82f1df60f4d9701a8f4050.jpg,Potato leaf early blight,Blueberry leaf,0.660,wrong plant species
+YOLOv8s (higher mAP),Powdery-mildew-on-pumpkin-leaf-for-web_jpg.rf.afa87076c362429a93988b664acdd479.jpg,Squash Powdery mildew leaf,grape leaf,0.835,wrong plant species
+YOLOv8s (higher mAP),Septoria_Leaf_Spot_of_Tomato187_jpg.rf.75aff5d750845b68c721761a6329fea8.jpg,Tomato Septoria leaf spot,Potato leaf early blight,0.500,wrong plant species
+YOLOv8s (higher mAP),appleleaf-trial-007-JPG_jpg.rf.e5ff395d231b89b4b939df254a84c711.jpg,Apple leaf,Cherry leaf,0.756,wrong plant species
+YOLOv8s (higher mAP),applescab2_jpg.rf.6a893becdc2e9f367e75d402011bf069.jpg,Apple Scab Leaf,Apple leaf,0.642,same plant: diseased leaf predicted healthy
+YOLOv8s (higher mAP),blog_early_blight_628_jpg.rf.d15bbb20a109b7a53aa92222d71c0bcf.jpg,Tomato Early blight leaf,Tomato Septoria leaf spot,0.799,same plant: confused with another disease
+YOLOv8s (higher mAP),creeping-cinquefoil-potentilla-reptans-4_jpg.rf.96e88f1fa89ab5804ee61263b7712508.jpg,Strawberry leaf,Raspberry leaf,0.813,wrong plant species
+YOLOv8s (higher mAP),dsc5270_jpg.rf.1956e4fc45997a86ffc401e8bd152f9f.jpg,Corn leaf blight,Peach leaf,0.685,wrong plant species
+YOLOv8s (higher mAP),dsc_8151s_jpg.rf.b76aaec96fb4930f47804a6b15dfeb0a.jpg,Potato leaf late blight,Tomato leaf late blight,0.878,wrong plant species
+YOLOv8s (higher mAP),e8199bb0e4a7edf94351ca07a5aadc06_jpg.rf.3821e5c1040b9a51e4a6c9397b524a4f.jpg,Bell_pepper leaf,Cherry leaf,0.838,wrong plant species
+YOLOv8s (higher mAP),early-20blight-20-284-29-jpg_itok-gfK5C193_jpg.rf.867d06648fc99909a467a5bba555f30a.jpg,Tomato Early blight leaf,Tomato leaf late blight,0.753,same plant: confused with another disease
+YOLOv8s (higher mAP),early-blight-closeup-NCSU_jpg.rf.c87da56445c453614870aa18d1f0fc97.jpg,Potato leaf early blight,Tomato Early blight leaf,0.792,wrong plant species
+YOLOv8s (higher mAP),file-php_id-18598-t-1_jpg.rf.7f2c8d0cfb9b21e4120cee30dff24385.jpg,Bell_pepper leaf,Tomato mold leaf,0.402,wrong plant species
+YOLOv8s (higher mAP),fpls-08-01602-g001_jpg.rf.b3492f6d76184a0981a0f20d038f87e0.jpg,Tomato leaf,Raspberry leaf,0.280,wrong plant species
+YOLOv8s (higher mAP),grapeleaf4-JPG_jpg.rf.8735e6b4a158bb0c27a2afb6f50679d6.jpg,grape leaf,Strawberry leaf,0.754,wrong plant species
+YOLOv8s (higher mAP),gray_leaf_spot__1-14B8612C8B60CDBC8E2_jpg.rf.06fd3f7a950b2d5c73a8262f6d5e98a6.jpg,Corn Gray leaf spot,Corn leaf blight,0.759,same plant: confused with another disease
+YOLOv8s (higher mAP),green-leaf-apple-tree-14300049_jpg.rf.fa78ea652b64b3be1e3292ac70818d59.jpg,Apple leaf,Raspberry leaf,0.742,wrong plant species
+YOLOv8s (higher mAP),img_0164_jpg.rf.9e3b3703daef13567761045cccf74067.jpg,Strawberry leaf,Blueberry leaf,0.720,wrong plant species
+YOLOv8n (faster),00pe_jpg.rf.9feea8dbf39bbd5a89d3d44b24a48954.jpg,Peach leaf,Cherry leaf,0.754,wrong plant species
+YOLOv8n (faster),072_jpg.rf.f302bbef89e577150a467751d9b040e4.jpg,Tomato leaf yellow virus,Tomato leaf,0.258,same plant: diseased leaf predicted healthy
+YOLOv8n (faster),0_jpg.rf.9450122b217ad9a352efe6200a823c76.jpg,Bell_pepper leaf spot,Bell_pepper leaf,0.559,same plant: diseased leaf predicted healthy
+YOLOv8n (faster),20090710-lateblight_jpg.rf.53d7e3971b60d0cff1912cefe927475d.jpg,Potato leaf late blight,Tomato leaf late blight,0.529,wrong plant species
+YOLOv8n (faster),286_1600_jpg.rf.9804e827dc253dcad47ed58c36605761.jpg,Potato leaf late blight,Potato leaf early blight,0.928,same plant: confused with another disease
+YOLOv8n (faster),35327886795_6f608e0eaa_b_jpg.rf.23f2f0c0c7ebc0bb24d234a2e90e34ec.jpg,grape leaf black rot,grape leaf,0.300,same plant: diseased leaf predicted healthy
+YOLOv8n (faster),3782849713_398f3a1086_b_jpg.rf.46424c79f6826e87a16f479f50f1b6fd.jpg,Potato leaf late blight,Tomato leaf,0.539,wrong plant species
+YOLOv8n (faster),3785483636_d888419c98_o_jpg.rf.6a113a4a290c3c4b8e3ee1a901d5cdee.jpg,Potato leaf early blight,Tomato leaf late blight,0.567,wrong plant species
+YOLOv8n (faster),Blueberry07_jpg.rf.9ebefbf55ca1e92f63a49048a187093d.jpg,Blueberry leaf,Tomato leaf,0.704,wrong plant species
+YOLOv8n (faster),DSC00005-JPG_jpg.rf.3f07d78f0d50fc2e35a03857af0cbd1f.jpg,Apple Scab Leaf,Apple rust leaf,0.657,same plant: confused with another disease
+YOLOv8n (faster),IMG_1246_jpg.rf.1dfc7a6c9dd194fc77ce1ba228b1b847.jpg,Tomato leaf,Bell_pepper leaf,0.321,wrong plant species
+YOLOv8n (faster),IMG_2348_jpg.rf.62e3a84c7b5a6dd96dca72a5d16a93a6.jpg,Tomato leaf bacterial spot,Tomato Septoria leaf spot,0.776,same plant: confused with another disease
+YOLOv8n (faster),IMG_3175_jpg.rf.66455e33df9bd3d0d2ca2604a3098c79.jpg,Tomato Septoria leaf spot,Tomato leaf bacterial spot,0.788,same plant: confused with another disease
+YOLOv8n (faster),IMG_4056-JPG_jpg.rf.074c7f9701500e01f3f65027a8eaf6ca.jpg,Strawberry leaf,Raspberry leaf,0.580,wrong plant species
+YOLOv8n (faster),Late-blight-on-potato_jpg.rf.c54cfbb4202dcefa35f37881ed215b99.jpg,Potato leaf late blight,Potato leaf early blight,0.762,same plant: confused with another disease
+YOLOv8n (faster),Leaf-mold3_jpg.rf.bd2326ba62a4f5690b2a382d8a92a839.jpg,Tomato mold leaf,Tomato leaf,0.596,same plant: diseased leaf predicted healthy
+YOLOv8n (faster),OLU13_jpg.rf.bcb8e1aa7624733e062ddbc776c9e27d.jpg,Tomato mold leaf,Tomato leaf,0.621,same plant: diseased leaf predicted healthy
+YOLOv8n (faster),Potato_Early_Blight_-26_Late_Blight_jpg.rf.252f0f29bd82f1df60f4d9701a8f4050.jpg,Potato leaf early blight,Blueberry leaf,0.641,wrong plant species
+YOLOv8n (faster),Septoria_Leaf_Spot_jpg.rf.7e9d3af9181815af5ca280280920b987.jpg,Tomato Septoria leaf spot,Apple Scab Leaf,0.602,wrong plant species
+YOLOv8n (faster),Septoria_Leaf_Spot_of_Tomato187_jpg.rf.75aff5d750845b68c721761a6329fea8.jpg,Tomato Septoria leaf spot,Tomato leaf bacterial spot,0.324,same plant: confused with another disease
+YOLOv8n (faster),appleleaf-trial-007-JPG_jpg.rf.e5ff395d231b89b4b939df254a84c711.jpg,Apple leaf,Cherry leaf,0.914,wrong plant species
+YOLOv8n (faster),bac_spot1-300x298_jpg.rf.762b87dade8c0239cb39f90ec2976754.jpg,Tomato leaf bacterial spot,Tomato leaf late blight,0.325,same plant: confused with another disease
+YOLOv8n (faster),blog_early_blight_628_jpg.rf.d15bbb20a109b7a53aa92222d71c0bcf.jpg,Tomato Early blight leaf,Tomato Septoria leaf spot,0.871,same plant: confused with another disease
+YOLOv8n (faster),creeping-cinquefoil-potentilla-reptans-4_jpg.rf.96e88f1fa89ab5804ee61263b7712508.jpg,Strawberry leaf,Raspberry leaf,0.893,wrong plant species
+YOLOv8n (faster),dsc5270_jpg.rf.1956e4fc45997a86ffc401e8bd152f9f.jpg,Corn leaf blight,Peach leaf,0.563,wrong plant species
+YOLOv8n (faster),dsc_8151s_jpg.rf.b76aaec96fb4930f47804a6b15dfeb0a.jpg,Potato leaf late blight,Tomato leaf late blight,0.793,wrong plant species
+YOLOv8n (faster),early-20blight-20-284-29-jpg_itok-gfK5C193_jpg.rf.867d06648fc99909a467a5bba555f30a.jpg,Tomato Early blight leaf,Tomato leaf late blight,0.808,same plant: confused with another disease
+YOLOv8n (faster),early-blight-closeup-NCSU_jpg.rf.c87da56445c453614870aa18d1f0fc97.jpg,Potato leaf early blight,Tomato Early blight leaf,0.446,wrong plant species
+YOLOv8n (faster),file-php_id-18598-t-1_jpg.rf.7f2c8d0cfb9b21e4120cee30dff24385.jpg,Bell_pepper leaf,,,no detection
+YOLOv8n (faster),grape-vine-leaf-1327453_jpg.rf.633e3604155f8b403b7a4dab877cafdd.jpg,grape leaf,Strawberry leaf,0.815,wrong plant species
+YOLOv8n (faster),gray_leaf_spot__1-14B8612C8B60CDBC8E2_jpg.rf.06fd3f7a950b2d5c73a8262f6d5e98a6.jpg,Corn Gray leaf spot,Corn leaf blight,0.799,same plant: confused with another disease
